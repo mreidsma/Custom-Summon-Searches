@@ -1,0 +1,35 @@
+#README - Create Custom Summon Searches
+
+---
+
+This tool was developed by Matthew Reidsma in HTML5 and Javascript to make creating scoped searches in Summon easier. We hope you find it useful.
+
+INSTALLATION
+
+You will need to edit one line of the file "index.html" to make this tool work with your installation of Summon.
+
+Open index.html in a text editor (NOT Microsoft Word! Use Notepad if you have nothing else). On line number #183, replace the string "YOURINSTITUTION" with the institutional prefix from your Summon URL. For instance, Grand Valley State University's Summon prefix is "gvsu." So we'd change line #183 from:
+
+&lt;form method="GET" action="http://YOURINSTITUTION.summon.serialssolutions.com/search"&gt;<br />
+
+to:
+
+&lt;form method="GET" action="http://gvsu.summon.serialssolutions.com/search"&gt;<br />
+
+Now, copy the files to your computer or a Web server and open the "index.html" file. As you select facets for your search, the HTML code at the bottom will be updated. When you have completed selecting facets for your search, copy the HTML code and paste it into an Web page to create a custom, scoped Summon search.
+
+More questions? Feel free to contact Matthew Reidsma on Twitter at @mreidsma or via email at reidsmam@gvsu.edu.
+
+DEMO
+
+You can view a live version of this tool at http://gvsulib.com/labs/custom_summon.
+
+COPYRIGHT
+
+This tool is copyright 2011 Grand Valley State University Libraries. 
+
+This tool is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This tool is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this tool. If not, see <http://www.gnu.org/licenses/>.

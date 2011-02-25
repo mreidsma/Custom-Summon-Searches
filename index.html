@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="author" content="Matthew Reidsma, reidsmam@gvsu.edu" />
+		<meta name="description" content="Create Custom Scoped Summon" />
+		
+		<title>Create Custom Summon Search Box</title>
+		
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+		<script type="text/javascript" src="js/custom_summon.js"></script>
+		
+	</head>
+	
+	<body onload="selectDesired();">
+		<div id="site_wrapper">
+			<h1>Create Custom Search</h1> 
+	
+			<div id="main_content">
+					
+					<p>Summon searches nearly all of our holdings by default. To create a more limited search for your students, select limiters below and copy the <abbr title="HyperText Markup Language">HTML</abbr> from the bottom of the page to insert into Blackboard or other website.</p>
+						
+						<form action="" method="post" id="custom_search">
+							<label for="keywords">Subject Terms</label>: <input type="text" name="keywords" id="keywords" class="lib_input" size="25" onChange="update();" onKeyUp="update();" /><br />
+								<p class="subject_instructions">Separate terms with commas.</p>
+								<div class="refine">
+									<input type="checkbox" id="full_text_checkbox" onChange="update(this);"  /> <label for="full_text_checkbox">Limit to items with full text online</label><br />
+									<input type="checkbox" id="is_scholarly_checkbox" onChange="update(this);"  /> <label for="is_scholarly_checkbox">Show only scholarly publications (including peer-review)</label><br />
+								</div>
+						
+						<div class="box">
+							<div class="box_head">
+								<span>Content Type:</span>
+							</div>
+						
+							<div class="box_body" id="content_checks">
+								<input type="checkbox" id="content_all_checkbox" class="checkall" onChange="selectDesiredContent();" checked /> <label for="content_all_checkbox">Anything</label><br />
+								<input type="checkbox" id="content_article_checkbox" value="1" class="content" onChange="update(this);" /> <label for="content_article_checkbox">Journal Articles</label><br />
+								<input type="checkbox" id="content_news_checkbox" class="content" onChange="update(this);" /> <label for="content_news_checkbox">Newspaper Articles</label><br />
+								<input type="checkbox" id="content_trade_checkbox" class="content" onChange="update(this);" /> <label for="content_trade_checkbox">Trade Publications</label><br />
+								<input type="checkbox" id="content_conference_checkbox" class="content" onChange="update(this);" /> <label for="content_conference_checkbox">Conference Proceedings</label><br />
+								<input type="checkbox" id="content_book_checkbox" class="content" onChange="update(this);" /> <label for="content_book_checkbox">Books</label><br />
+								<input type="checkbox" id="content_ebook_checkbox" class="content" onChange="update(this);" /> <label for="content_ebook_checkbox">eBooks</label><br />
+								<input type="checkbox" id="content_bookreview_checkbox" class="content" onChange="update(this);" /> <label for="content_bookreview_checkbox">Book Reviews</label><br />
+							</div>
+						</div>
+						
+						<div class="box">
+							<div class="box_head">
+								<span>Publication Date:</span>
+							</div>
+						
+							<div class="box_body">   
+								<select id="start_month" name="start_month" onChange="update(this);">
+									<option value="#"></option>
+									<option value="1"><abbr title="January">Jan</abbr></option>
+									<option value="2"><abbr title="February">Feb</abbr></option>
+									<option value="3"><abbr title="March">Mar</abbr></option>
+									<option value="4"><abbr title="April">Apr</abbr></option>
+									<option value="5">May</option>
+									<option value="6"><abbr title="June">Jun</abbr></option>
+									<option value="7"><abbr title="July">Jul</abbr></option>
+									<option value="8"><abbr title="August">Aug</abbr></option>
+									<option value="9"><abbr title="September">Sep</abbr></option>
+									<option value="10"><abbr title="October">Oct</abbr></option>
+									<option value="11"><abbr title="November">Nov</abbr></option>
+									<option value="12"><abbr title="December">Dec</abbr></option>
+								</select>
+								<select id="start_day" name="start_day">
+									<option value="#"></option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+								<input type="text" id="start_year" name="start_year" size="4" maxsize="4" onchange="update(this);" /> to<br />
+									<select id="end_month">
+										<option value="#"></option>
+										<option value="1"><abbr title="January">Jan</abbr></option>
+										<option value="2"><abbr title="February">Feb</abbr></option>
+										<option value="3"><abbr title="March">Mar</abbr></option>
+										<option value="4"><abbr title="April">Apr</abbr></option>
+										<option value="5">May</option>
+										<option value="6"><abbr title="June">Jun</abbr></option>
+										<option value="7"><abbr title="July">Jul</abbr></option>
+										<option value="8"><abbr title="August">Aug</abbr></option>
+										<option value="9"><abbr title="September">Sep</abbr></option>
+										<option value="10"><abbr title="October">Oct</abbr></option>
+										<option value="11"><abbr title="November">Nov</abbr></option>
+										<option value="12"><abbr title="December">Dec</abbr></option>
+									</select>
+									<select id="end_day">
+										<option value="#"></option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select>
+									<input type="text" id="end_year" size="4" maxsize="4" onKeyUp="update(this);" /><br />
+									<div class="cleardates">
+										<input type="button" value="Clear Dates" onClick="clearDates();" />
+									</div>
+							</div>
+						</div>
+						
+						<div class="box">					
+							<div class="box_head">
+								<span>Language:</span>
+							</div>
+						
+							<div class="box_body">
+								<input type="checkbox" id="language_all_checkbox" class="checkall" onChange="selectDesiredLanguage();" checked /> <label for="language_all_checkbox">Any Language</label><br />
+								<input type="checkbox" id="lang_english_checkbox" class="language" onChange="update(this);" /> <label for="lang_english_checkbox">English</label><br />
+								<input type="checkbox" id="lang_spanish_checkbox" class="language" onChange="update(this);" /> <label for="lang_spanish_checkbox">Spanish</label><br />
+								<input type="checkbox" id="lang_french_checkbox" class="language" onChange="update(this);" /> <label for="lang_french_checkbox">French</label><br />
+								<input type="checkbox" id="lang_german_checkbox" class="language" onChange="update(this);" /> <label for="lang_german_checkbox">German</label><br />
+								<input type="checkbox" id="lang_polish_checkbox" class="language" onChange="update(this);" /> <label for="lang_polish_checkbox">Polish</label><br />
+								<input type="checkbox" id="lang_italian_checkbox" class="language" onChange="update(this);" /> <label for="lang_italian_checkbox">Italian</label><br />
+								<input type="checkbox" id="lang_chinese_checkbox" class="language" onChange="update(this);" /> <label for="lang_chinese_checkbox">Chinese</label><br />
+								<input type="checkbox" id="lang_japanese_checkbox" class="language" onChange="update(this);" /> <label for="lang_japanese_checkbox">Japanese</label><br />
+								<input type="checkbox" id="lang_arabic_checkbox" class="language" onChange="update(this);" /> <label for="lang_arabic_checkbox">Arabic</label><br />
+							</div>
+						</div>
+					
+						<div style="clear: left;"></div>
+						
+						<div id="lib_summon">
+							<h3>Copy this HTML:</h3>
+							<div id="lib_summon_code">&lt;!-- Start of Custom Summon Search code --&gt;<br />
+								
+<!-- Edit the following line to include the URL to your Summon instance. Make sure to leave the /search at the end -->
+&lt;form method="GET" action="http://YOURINSTITUTION.summon.serialssolutions.com/search"&gt;<br />
+<!-- Do not edit below this line -->
+
+&lt;input type="text" name="s.q" /&gt;<br />
+<span id="insertterms"></span>
+<span id="fulltexttoggle"></span>
+<span id="isscholarlytoggle"></span>
+<span id="incatalogtoggle"></span>
+<span id="insertdate"></span>
+<span id="journaltoggle"></span>
+<span id="newstoggle"></span>
+<span id="tradetoggle"></span>
+<span id="conftoggle"></span>
+<span id="booktoggle"></span>
+<span id="ebooktoggle"></span>
+<span id="reviewtoggle"></span>
+<span id="langengtoggle"></span>
+<span id="langspantoggle"></span>
+<span id="langfretoggle"></span>
+<span id="langgertoggle"></span>
+<span id="langpoltoggle"></span>
+<span id="langitaltoggle"></span>
+<span id="langchitoggle"></span>
+<span id="langjaptoggle"></span>
+<span id="langarabictoggle"></span>
+&lt;input type="hidden" name="spellcheck" value="true" /&gt;<br />
+&lt;input type="submit" value="Search" /&gt;<br />
+&lt;/form&gt;<br />
+&lt;!-- End of Custom Summon Search code --&gt;
+						</div>
+					</div>
+					</form>
+					
+				</div>
+				
+				<div id="footer">
+					<div class="footer_logo">
+						<p>A tool by <a href="http://gvsulib.com/labs" title="Grand Valley State University Libraries Labs"><abbr title="Grand Valley State University">GVSU</abbr> Library Labs</a></p>
+					</div>	
+				</div>
+		</div>
+		</div>
+	
+	</body>
+</html>

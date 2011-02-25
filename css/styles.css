@@ -1,0 +1,67 @@
+/* 	Styles for Custom Summon Search Tool by Matthew Reidsma
+	Grand Valley State University Libraries, 2011
+*/
+
+body { 
+	background-color: #ffffff; 
+	font-family: Arial, Helvetica, Verdana, sans-serif; 
+	color: #000000;
+	font-size: 75%; 
+}
+
+#site_wrapper { 
+	width: 52em; 
+	margin: auto; 
+	}
+
+input#keywords { 
+	width: 80%; 
+}
+
+div#lib_summon { 
+	margin-top: 1.5em; 
+}
+	  
+#lib_summon_code { 
+	border: 1px dashed #999; 
+	background: #eee; 
+	padding: 1em; 
+}	
+
+.box { 
+	width: 30%; 
+	float: left; 
+	margin-right: 3%; 
+	font-size: 1em; 
+}
+
+.box_head { 
+	padding: .4em; 
+	background-color: #c7c7c7; 
+	border: 1px solid #999999; 
+	margin-top: .4em;  
+	text-align: center;
+}
+
+.box_body { 
+	background-color: #eeeeee; 
+	padding: .4em; 
+	border-left: 1px solid #999999; 
+	border-right: 1px solid #999999; 
+	border-bottom: 1px solid #999999; 
+}
+
+.refine { 
+	margin: .67em 0 .67em 8.33em; 
+}
+
+p.subject_instructions { 
+	margin: 0 8.33em; 
+	color: #666666; 
+	font-size: .83em;
+}
+
+div.cleardates { 
+	margin-top: .83em; 
+	text-align: right; 
+}
