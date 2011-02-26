@@ -167,6 +167,14 @@
 					element('langgertoggle').innerHTML = ""; 
 				}
 				
+				if (element('lang_dutch_checkbox').checked) 
+				{ // Add Dutch Language Filter
+					element('langdutchtoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"Language,Dutch,\" /&gt;<br />"; 
+				} else 
+					{ // Remove German Language Filter
+						element('langdutchtoggle').innerHTML = ""; 
+					}
+				
 			if (element('lang_polish_checkbox').checked) 
 			{ // Add Polish Language Filter
 				element('langpoltoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"Language,Polish,\" /&gt;<br />"; 
