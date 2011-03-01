@@ -133,6 +133,22 @@
 					element('reviewtoggle').innerHTML = ""; 
 				}
 				
+			if (element('contentmusicscore_checkbox').checked) 
+			{ // Add Book Review Filter
+				element('musictoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"ContentType,Music Score,\" /&gt;<br />"; 
+			} else 
+				{ // Remove Book Review Filter
+					element('musictoggle').innerHTML = ""; 
+				}
+				
+			if (element('content_bookreview_checkbox').checked) 
+			{ // Add Book Review Filter
+				element('audiotoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"ContentType,Audio Recording,\" /&gt;<br />"; 
+			} else 
+				{ // Remove Book Review Filter
+					element('audiotoggle').innerHTML = ""; 
+				}
+				
 		// Language Filters
 				
 			if (element('lang_english_checkbox').checked) 
