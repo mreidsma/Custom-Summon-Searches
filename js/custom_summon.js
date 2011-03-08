@@ -75,6 +75,14 @@
 				element('isscholarlytoggle').innerHTML = ""; 
 			}
 			
+		if (element('in_catalog_checkbox').checked) 
+		{ // Add filter for peer-review
+			element('incatalogtoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fq[]\" value=\"SourceType:(&amp;quot;</code>Library Catalog&amp;quot;</pre>)\" /&gt;<br />"; 
+		} else 
+			{ // Remove peer-review filter
+				element('incatalogtoggle').innerHTML = ""; 
+			}
+			
 			// Content-Type filters
 								
 			if (element('content_article_checkbox').checked) 
