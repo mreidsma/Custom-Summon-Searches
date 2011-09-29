@@ -118,19 +118,11 @@
 				}
 				
 			if (element('content_book_checkbox').checked) 
-			{ // Add Books filter
-				element('booktoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"ContentType,Book,\" /&gt;<br />"; 
+			{ // Add Books & eBooks filter
+				element('booktoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"ContentType,Book / eBook,\" /&gt;<br />"; 
 			} else
 				{ // Remove Books filter
 					element('booktoggle').innerHTML = ""; 
-				}
-				
-			if (element('content_ebook_checkbox').checked) 
-			{ // Add eBooks filter
-				element('ebooktoggle').innerHTML = "&lt;input type=\"hidden\" name=\"s.fvf[]\" value=\"ContentType,eBook,\" /&gt;<br />"; 
-			} else 
-				{ // Remove eBooks filter
-					element('ebooktoggle').innerHTML = ""; 
 				}
 				
 			if (element('content_bookreview_checkbox').checked) 
