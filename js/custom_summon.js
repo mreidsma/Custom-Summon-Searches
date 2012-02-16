@@ -57,7 +57,7 @@ $(function() {
 	
 	$("#end_year").keyup(function() {
 		
-		if(this.value.length) {
+		if(this.value.length > 3) {
 			
 			var start_range = '*';
 			var start_year  = $("#start_year").val();
