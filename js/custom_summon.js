@@ -6,7 +6,7 @@
 	// http://creativecommons.org/licenses/by/3.0/
 	//
 
-$(document).ready(function() {
+$(function() {
 	
 	function selectText(element) {
 	    var doc = document;
@@ -30,9 +30,7 @@ $(document).ready(function() {
 
 	$(":checkbox").click(function() {
 
-		var values = $(this).val();
-
-		data = values.split("|");
+		var data = this.value.split("|");
 
 		var newInput = '&ltinput type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' /&gt;<br />';
 		var textInput = '<input type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' />';
@@ -59,53 +57,42 @@ $(document).ready(function() {
 	
 	$("#end_year").keyup(function() {
 		
-			var test = $(this).val().length;
+		if(this.value.length) {
 			
-			if(test > 3) {
-				
-				var start_year = $("#start_year").val();
-					if(start_year == "") { 
-						start_range = "*"; 
-					} else {
-						var start_month = $("#start_month").val();
-						if(start_month == "#") { 
-							start_month = ''; 
-						} else {
-							start_month = (start_month.length < 2) ? "0" + start_month : start_month; // Pad with zeros 
-							start_month =  "-" + start_month; 
-						}
-						var start_day = $("#start_day").val(); 
-						if(start_day == "#") { 
-							start_day = ''; 
-						} else {
-							start_day = (start_day.length < 2) ? "0" + start_day : start_day; // Pad with zeros
-							start_day =  "-" + start_day; 
-						}
-						
-						start_range = start_year + start_month + start_day;
-					}
-				
-				var end_year = $("#end_year").val();	
-					
-				var end_month = $("#end_month").val();
-					if(end_month == "#") { 
-						end_month = ''; 
-					} else {
-						end_month = (end_month.length < 2) ? "0" + end_month : end_month; // Pad with zeros
-						end_month = "-" + end_month;
-					}
-				var end_day = $("#end_day").val(); 
-					if(end_day == "#") { 
-						end_day = ''; 
-					} else {
-					end_day = (end_day.length < 2) ? "0" + end_day : end_day; // Pad with zeros
-					end_day = "-" + end_day;
-					}
+			var start_range = '*';
+			var start_year  = $("#start_year").val();
+			var start_month = parseInt($("#start_month").val()) || '';
+			var start_day   = parseInt($("#start_day").val()) || '';
+			var end_year    = $("#end_year").val();
+			var end_month   = parseInt($("#end_month").val()) || '';
+			var end_day     = parseInt($("#end_day").val()) || '';
 
-				$("#insert-pubdate").html('&lt;input type="hidden" name="s.rf" value="PublicationDate,' + start_range + ':' + end_year + end_month + end_day + '" /><br />');
-			
+			if(start_year.length > 0) {
+				if(start_month >= 0) {
+					start_month = (start_month.length < 2) ? "0" + start_month : start_month; // Pad with zeros 
+					start_month =  "-" + start_month; 
+				}
+				if(start_day >= 0) {
+					start_day = (start_day.length < 2) ? "0" + start_day : start_day; // Pad with zeros
+					start_day =  "-" + start_day; 
+				}
+				
+				start_range = start_year + start_month + start_day;
 			}
-	
+		
+			if(end_month >= 0) {
+				end_month = (end_month.length < 2) ? "0" + end_month : end_month; // Pad with zeros
+				end_month = "-" + end_month;
+			}
+			if(end_day >= 0) {
+				end_day = (end_day.length < 2) ? "0" + end_day : end_day; // Pad with zeros
+				end_day = "-" + end_day;
+			}
+
+			$("#insert-pubdate").html('&lt;input type="hidden" name="s.rf" value="PublicationDate,' + start_range + ':' + end_year + end_month + end_day + '" /><br />');
+		
+		}
+
 	});
 	
 	$("#keywords").keyup(function() {
