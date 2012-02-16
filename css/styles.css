@@ -1,67 +1,115 @@
-/* 	Styles for Custom Summon Search Tool by Matthew Reidsma
-	Grand Valley State University Libraries, 2011
+/* Reset styles */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
 */
 
-body { 
-	background-color: #ffffff; 
-	font-family: Arial, Helvetica, Verdana, sans-serif; 
-	color: #000000;
-	font-size: 75%; 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h3, h4, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	width: 96%;
+	margin: 0 auto;
+}
+ol, ul {
+	list-style: none;
 }
 
-#site_wrapper { 
-	width: 52em; 
-	margin: auto; 
-	}
+a {color: #1F65A0;}
+	
+/* Grid styles : Based on Nicole Sullivan's OOCSS grids */
 
-input#keywords { 
-	width: 80%; 
+.line,.lastUnit{overflow:hidden;*overflow:visible;*zoom:1;}	
+.line {margin-top:1em;}
+.size1of1,unit{float:none;}
+.size1of1{width:98%;}
+.size1of2,
+.size1of2-rgutter {width:auto;}
+.lastUnit{float:none;width:auto;_position:relative;_left:-3px;_margin-right:-3px;}
+
+/* Typography styles */
+
+body {font-family: Arial, Helvetica, sans-serif;color: #363636;}
+p {font-size:100%;line-height:150%;}
+
+h2,h3,h4,h5,h6 { color:#093A6D;margin:.8em 0;}
+
+h1{font-family:"Gill Sans", "Century Gothic", Lucida, "Trebuchet MS", "Myriad Pro", Helvetica, Verdana, Arial, sans-serif;font-size:150%;font-weight: normal;text-transform: uppercase;margin:1.1em 0;}
+
+h2{font-size:110%;}
+
+p { margin-bottom:1em;}
+
+strong,
+b{font-weight:bold;}
+
+em,
+i{font-style:italic;}
+
+/* Button styles */
+
+.lib-button-small-grey{background:#eee;background:-moz-linear-gradient(top, rgba(255, 255, 255, .2) 0%, rgba(0, 0, 0, .2) 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, .2)), color-stop(100%,rgba(0, 0, 0, .2)));background: -webkit-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(0, 0, 0, .2) 100%);background: -o-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(0, 0, 0, .2) 100%);background: -ms-linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(0, 0, 0, .2) 100%);background: linear-gradient(top, rgba(255, 255, 255, .2) 0%,rgba(0, 0, 0, .2) 100%);border: 1px solid #aaa;border-top: 1px solid #ccc;border-left: 1px solid #ccc;-moz-border-radius:.25em;-webkit-border-radius:.25em;border-radius:.25em;color: #444;display: inline-block;font-weight:bold;text-decoration:none;text-shadow: 0 1px rgba(255, 255, 255, .75);cursor: pointer;margin-bottom:1.25em;font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.lib-button-small-grey{ padding: .333em .75em;font-size:.8em;line-height:1.3125em;}
+.copybutton {float:right;}
+
+/* Form styles */
+
+label{font-size:.9em;color: #333;}
+input[type="text"]{width:98%;margin:.5em 0;border:1px solid #ddd;font-size:1.1em;padding:.4em .2em;}
+input[type="checkbox"]{margin-top:.7em;}
+input.lib-inline{display:inline !important;width:auto;font-size:1em;padding:.2em;}
+
+/* Status Message Styles */
+
+.lib-alert {font-size:.8em;display: block;margin: -0.5em 0 1.6em 0;padding: 1em 1.6em;background: #ffff7f; border: 1px solid #cc6;text-align: left;color: #444;}
+.lib-error {display: block;margin: -0.5em 0 1.6em 0;padding: 1em 1.6em;background: #ff7f7f;border: 1px solid #cc6666;text-align: left;color: #444;}
+.lib-error a {color:#841b1b;}
+lib-error a {color:#154e96;}
+
+/* Interaction Styles */
+
+.accordian-head{padding:.5em 0 .5em .5em;}
+.accordian-head h2 span {display:inline-block;width:1em;}
+.accordian-body{height:12em;max-height:12em;overflow-y:scroll;}
+
+.lib-box {border:1px solid #bbb;}
+.lib-box .accordian-head {background-color: #ddd;font-weight:bold;border-bottom:1px solid #ddd;}
+.lib-box .accordian-body {padding:.5em;}
+
+#summon-code {background-color:#ddd;border:1px dashed #333;padding:.5em;width:100%;}
+
+footer{margin-top:1.5em;font-size:.8em;}
+
+@media screen and (min-width:600px) {
+.unit{float:left;}
+.size1of2 {width:50%;}
+.size1of2-rgutter {width:49%;margin:0 0 1% 0;}
 }
 
-div#lib_summon { 
-	margin-top: 1.5em; 
-}
-	  
-#lib_summon_code { 
-	border: 1px dashed #999; 
-	background: #eee; 
-	padding: 1em; 
-}	
-
-.box { 
-	width: 30%; 
-	float: left; 
-	margin-right: 3%; 
-	font-size: 1em; 
-}
-
-.box_head { 
-	padding: .4em; 
-	background-color: #c7c7c7; 
-	border: 1px solid #999999; 
-	margin-top: .4em;  
-	text-align: center;
-}
-
-.box_body { 
-	background-color: #eeeeee; 
-	padding: .4em; 
-	border-left: 1px solid #999999; 
-	border-right: 1px solid #999999; 
-	border-bottom: 1px solid #999999; 
-}
-
-.refine { 
-	margin: .67em 0 .67em 8.33em; 
-}
-
-p.subject_instructions { 
-	margin: 0 8.33em; 
-	color: #666666; 
-	font-size: .83em;
-}
-
-div.cleardates { 
-	margin-top: .83em; 
-	text-align: right; 
+@media screen and (min-width:900px) {
+body{width:900px;margin:0 auto;}	
 }

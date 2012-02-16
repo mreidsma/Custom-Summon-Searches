@@ -4,11 +4,13 @@
 
 This tool was developed by Matthew Reidsma in HTML5 and Javascript to make creating scoped searches in Summon easier. We hope you find it useful.
 
+On February 15, 2012, Serials Solutions released their own Scoped Search creator. However, you need to be able to add Javascript to your website to use their search boxes. Some sites, including many CMSs and LMSs, strip Javascript. This tool lets you build scoped searches using good old HTML. I've updated it to work with discipline searches. 
+
 INSTALLATION
 
 You will need to edit one line of the file "index.html" to make this tool work with your installation of Summon.
 
-Open index.html in a text editor (NOT Microsoft Word! Use Notepad if you have nothing else). On line number #183, replace the string "YOURINSTITUTION" with the institutional prefix from your Summon URL. For instance, Grand Valley State University's Summon prefix is "gvsu." So we'd change line #183 from:
+Open index.html in a text editor (NOT Microsoft Word! Use Notepad if you have nothing else). On line number #280, replace the string "YOURINSTITUTION" with the institutional prefix from your Summon URL. For instance, Grand Valley State University's Summon prefix is "gvsu." So we'd change line #280 from:
 
 &lt;form method="GET" action="http://YOURINSTITUTION.summon.serialssolutions.com/search"&gt;<br />
 
