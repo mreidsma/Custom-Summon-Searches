@@ -9,16 +9,15 @@
 $(function() {
 	
 	function selectText(element) {
-	    var doc = document;
-	    var text = doc.getElementById(element);    
+	    var text = document.getElementById(element);    
 
-	    if (doc.body.createTextRange) { // ms
-	        var range = doc.body.createTextRange();
+	    if (document.body.createTextRange) { // ms
+	        var range = document.body.createTextRange();
 	        range.moveToElementText(text);
 	        range.select();
 	    } else if (window.getSelection) { // moz, opera, webkit
 	        var selection = window.getSelection();            
-	        var range = doc.createRange();
+	        var range = document.createRange();
 	        range.selectNodeContents(text);
 	        selection.removeAllRanges();
 	        selection.addRange(range);
@@ -31,22 +30,18 @@ $(function() {
 	$(":checkbox").click(function() {
 
 		var data = this.value.split("|");
-
-		var newInput = '&ltinput type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' /&gt;<br />';
-		var textInput = '<input type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' />';
+		var textInput = 'input type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' /';
 
 		if ($(this).attr('checked')) {
 
-			$("#search-refinements").append(newInput);
+			$("#search-refinements").append('&lt;' + textInput + '&gt;<br />');
 
 		} else { // Unchecked
 
 			var value = $("#search-refinements").text();
-			value = value.replace(textInput, "");
-			$("#search-refinements").text(value);
-			var htmlvalue = $("#search-refinements").html();
-			htmlvalue = htmlvalue.replace(/&gt;/g,"&gt;<br />");
-			$("#search-refinements").html(htmlvalue);
+			value = value.replace('<' + textInput + '>', "");
+			value = value.replace(/&gt;/g,"&gt;<br />");
+			$("#search-refinements").html(value);
 			
 		}
 
@@ -57,7 +52,7 @@ $(function() {
 	
 	$("#end_year").keyup(function() {
 		
-		if(this.value.length) {
+		if(this.value.length > 3) {
 			
 			var start_range = '*';
 			var start_year  = $("#start_year").val();
