@@ -40,6 +40,7 @@ $(function() {
 
 			var value = $("#search-refinements").text();
 			value = value.replace('<' + textInput + '>', "");
+			value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 			value = value.replace(/&gt;/g,"&gt;<br />");
 			$("#search-refinements").html(value);
 			
@@ -91,14 +92,8 @@ $(function() {
 	});
 	
 	$("#keywords").keyup(function() {
-		if($(this).val() != "") { // Add Subject terms filter
-			var subject_terms = $("#keywords").val();
-									
-			$("#insertterms").html('&lt;input type="hidden" name="s.fvgf[]" value="SubjectTerms,or,' + subject_terms + '" /&gt;<br />');
-
-		} else { // Remove Subject terms filter
-			$("insertterms").html("");
-		}
+		var subject_terms = '&lt;input type="hidden" name="s.fvgf[]" value="SubjectTerms,or,' + this.value + '" /&gt;<br />';
+		$("#insertterms").html(this.value ? subject_terms : '');
 	});
 	
 	$(".accordian-body").hide();
@@ -106,8 +101,8 @@ $(function() {
 	$(".accordian-head").find("h2").prepend("<span>&#9656;</span>");
 	
 	$(".accordian-head").click(function() {
-		$(this).next(".accordian-body").slideToggle(400);
 		var arrow = $(this).find("h2 span").html();
+		$(this).next(".accordian-body").slideToggle(400);
 		if(arrow == "<span>▾</span>") {
 			$(this).find("h2 span").html("<span>&#9656;</span>");
 		} else {
