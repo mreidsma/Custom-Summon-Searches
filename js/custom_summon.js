@@ -1,143 +1,96 @@
 // Custom Summon Boxes
-	// Grand Valley State University Library Labs, 2011, 2012
-	// by Matthew Reidsma, reidsmam@gvsu.edu with help from John Krull, astrom.flux@gmail.com
+    // Grand Valley State University Library Labs, 2011, 2012
+    // by Matthew Reidsma, reidsmam@gvsu.edu with help from John Krull, astrom.flux@gmail.com
 	// 
 	// Released under Creative Commons Attribution 3.0 Unported License
 	// http://creativecommons.org/licenses/by/3.0/
 	//
 
-$(document).ready(function() {
-	
-	function selectText(element) {
-	    var doc = document;
-	    var text = doc.getElementById(element);    
-
-	    if (doc.body.createTextRange) { // ms
-	        var range = doc.body.createTextRange();
-	        range.moveToElementText(text);
-	        range.select();
-	    } else if (window.getSelection) { // moz, opera, webkit
-	        var selection = window.getSelection();            
-	        var range = doc.createRange();
-	        range.selectNodeContents(text);
-	        selection.removeAllRanges();
-	        selection.addRange(range);
-	    }
-	}
-	
+$(function() {
 
 	// Handle the checkboxes
-
 	$(":checkbox").click(function() {
 
-		var values = $(this).val();
-
-		data = values.split("|");
-
-		var newInput = '&ltinput type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' /&gt;<br />';
-		var textInput = '<input type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' />';
+		var data = this.value.split("|");
+		var textInput = 'input type="hidden" name="' + data[0] + '" value=\'' + data[1] + data[2] + '\' /';
 
 		if ($(this).attr('checked')) {
 
-			$("#search-refinements").append(newInput);
+			$("#search-refinements").append('&lt;' + textInput + '&gt;<br/>');
 
 		} else { // Unchecked
 
 			var value = $("#search-refinements").text();
-			value = value.replace(textInput, "");
-			$("#search-refinements").text(value);
-			var htmlvalue = $("#search-refinements").html();
-			htmlvalue = htmlvalue.replace(/&gt;/g,"&gt;<br />");
-			$("#search-refinements").html(htmlvalue);
-			
+			value = value.replace('<' + textInput + '>', "");
+			value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			value = value.replace(/&gt;/g,"&gt;<br />");
+			$("#search-refinements").html(value);
+            
 		}
-
 	});
-	
 	
 	// Date filter
+	$("#start_year, #end_year").keyup(refreshDateRange);
+	$("#start_month, #start_day, #end_month, #end_day").change(refreshDateRange);
 	
-	$("#end_year").keyup(function() {
-		
-			var test = $(this).val().length;
-			
-			if(test > 3) {
-				
-				var start_year = $("#start_year").val();
-					if(start_year == "") { 
-						start_range = "*"; 
-					} else {
-						var start_month = $("#start_month").val();
-						if(start_month == "#") { 
-							start_month = ''; 
-						} else {
-							start_month = (start_month.length < 2) ? "0" + start_month : start_month; // Pad with zeros 
-							start_month =  "-" + start_month; 
-						}
-						var start_day = $("#start_day").val(); 
-						if(start_day == "#") { 
-							start_day = ''; 
-						} else {
-							start_day = (start_day.length < 2) ? "0" + start_day : start_day; // Pad with zeros
-							start_day =  "-" + start_day; 
-						}
-						
-						start_range = start_year + start_month + start_day;
-					}
-				
-				var end_year = $("#end_year").val();	
-					
-				var end_month = $("#end_month").val();
-					if(end_month == "#") { 
-						end_month = ''; 
-					} else {
-						end_month = (end_month.length < 2) ? "0" + end_month : end_month; // Pad with zeros
-						end_month = "-" + end_month;
-					}
-				var end_day = $("#end_day").val(); 
-					if(end_day == "#") { 
-						end_day = ''; 
-					} else {
-					end_day = (end_day.length < 2) ? "0" + end_day : end_day; // Pad with zeros
-					end_day = "-" + end_day;
-					}
+	function refreshDateRange() {
 
-				$("#insert-pubdate").html('&lt;input type="hidden" name="s.rf" value="PublicationDate,' + start_range + ':' + end_year + end_month + end_day + '" /><br />');
-			
-			}
-	
-	});
+        var full_range = '';
+		var start_year = $("#start_year").val();
+		var end_year   = $("#end_year").val();
+		
+		var start_month = parseInt($("#start_month").val(), 10) || '';
+		var start_day   = parseInt($("#start_day").val(), 10)   || '';
+		var end_month   = parseInt($("#end_month").val(), 10)   || '';
+		var end_day     = parseInt($("#end_day").val(), 10)     || '';
+
+		if(start_month > 0) { start_month = '-' + (start_month.length < 2 ? "0" + start_month : start_month); } // Pad with zeros 
+		if(start_day > 0)   { start_day = '-' + (start_day.length < 2 ? "0" + start_day : start_day);         } // Pad with zeros
+		if(end_month > 0) { end_month = '-' + (end_month.length < 2 ? "0" + end_month : end_month);           } // Pad with zeros
+		if(end_day > 0)   {	end_day = '-' + (end_day.length < 2 ? "0" + end_day : end_day);                   } // Pad with zeros
+
+        var start_range = start_year ? (start_year + (start_month && start_day ? start_month + start_day : '')) : '*';
+        var end_range   = end_year   ? (end_year   + (end_month   && end_day   ? end_month   + end_day   : '')) : '*';
+        
+        if(start_range == '*' && end_range == '*') { full_range = ''; } else { full_range = start_range + ':' + end_range; }
+		
+		$("#insert-pubdate").html(full_range ? '&lt;input type="hidden" name="s.rf" value="PublicationDate,' + full_range + '" /&gt;<br />' : '');
+		$("#search-refinements").html( $("#search-refinements").html() ); // Bug fix for Chrome
+	}
 	
 	$("#keywords").keyup(function() {
-		if($(this).val() != "") { // Add Subject terms filter
-			var subject_terms = $("#keywords").val();
-									
-			$("#insertterms").html('&lt;input type="hidden" name="s.fvgf[]" value="SubjectTerms,or,' + subject_terms + '" /&gt;<br />');
-
-		} else { // Remove Subject terms filter
-			$("insertterms").html("");
-		}
+		$("#insertterms").html(this.value ? '&lt;input type="hidden" name="s.fvgf[]" value="SubjectTerms,or,' + this.value + '" /&gt;<br />' : '');
 	});
 	
 	$(".accordian-body").hide();
 	
 	$(".accordian-head").find("h2").prepend("<span>&#9656;</span>");
-	
 	$(".accordian-head").click(function() {
+        var arrowEl = $(this).find("h2 span span");
 		$(this).next(".accordian-body").slideToggle(400);
-		var arrow = $(this).find("h2 span").html();
-		if(arrow == "<span>▾</span>") {
-			$(this).find("h2 span").html("<span>&#9656;</span>");
+		if(arrowEl.html() == "?") {
+			arrowEl.html("&#9656;");
 		} else {
-			$(this).find("h2 span").html("<span>&#9662;</span>");
+			arrowEl.html("&#9662;");
 		}
 	});
 	
 	$("#codeblock").prepend('<div class="copybutton lib-button-small-grey">Select All</div>');
 	
-	$(".copybutton").click(function(){
-	    selectText("summon-code");
-	  });
+	$(".copybutton").click(function() {
+        var text = document.getElementById("summon-code");
+        var range = (document.createRange ? document.createRange() : document.body.createTextRange());
+
+        if (document.body.createTextRange) { // ms
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) { // moz, opera, webkit
+            var selection = window.getSelection();
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+	});
 	
 	$("#clear-dates-button").click(function() {
 		$("#insert-pubdate").html("");
