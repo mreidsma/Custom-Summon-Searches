@@ -100,7 +100,7 @@ lib-error a {color:#154e96;}
 .lib-box .accordian-head {background-color: #ddd;font-weight:bold;border-bottom:1px solid #ddd;}
 .lib-box .accordian-body {padding:.5em;}
 
-#summon-code {background-color:#ddd;border:1px dashed #333;padding:.5em;width:100%;}
+#summon-code {background-color:#ddd;border:1px dashed #333;padding:.5em;width:100%;font-family:Consolas,Monaco,'Courier New',monospace;font-size:.8em}
 
 footer{margin-top:1.5em;font-size:.8em;}
 
